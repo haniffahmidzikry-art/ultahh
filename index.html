@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  position: absolute;
+  text-align: center;
+  color: white;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.6s ease;
+}
+
+.card.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  background: white;
+  color: #ff4d6d;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+.heart {
+  position: absolute;
+  bottom: -50px;
+  font-size: 20px;
+  animation: float 5s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="card active">
+    <h1>Hey You ❤️</h1>
+    <p>I have something special for you...</p>
+    <button onclick="next()">Click Me ✨</button>
+  </div>
+
+  <div class="card">
+    <h1>You Are Special 💖</h1>
+    <p>Every moment with you feels magical</p>
+    <button onclick="next()">Next ➡️</button>
+  </div>
+
+  <div class="card">
+    <h1>I Appreciate You 💕</h1>
+    <p>Thank you for being in my life</p>
+    <button onclick="next()">Last 💌</button>
+  </div>
+
+  <!-- SLIDE TERAKHIR (SUDAH ADA FOTO) -->
+  <div class="card">
+    <h1>Happy Birthday Iqiss ❤️</h1>
+
+    <img src="iqis.jpg" 
+         style="width:200px; border-radius:20px; margin-top:15px; box-shadow:0 0 20px rgba(255,255,255,0.5);">
+
+    <p>I love you forever 💖</p>
+  </div>
+
+</div>
+
+<script>
+let index = 0;
+const cards = document.querySelectorAll(".card");
+
+function next() {
+  cards[index].classList.remove("active");
+  index++;
+  if(index < cards.length){
+    cards[index].classList.add("active");
+  }
+}
+
+setInterval(() => {
+  let heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 5000);
+}, 300);
+</script>
+
+</body>
+</html>
